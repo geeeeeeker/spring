@@ -24,11 +24,13 @@ import java.util.Set;
  * @author Stephane Nicoll
  * @since 4.1
  */
+//基础缓存操作
 public interface BasicOperation {
 
 	/**
 	 * Return the cache name(s) associated with the operation.
 	 */
+	//返回缓存操作的缓存名集合
 	Set<String> getCacheNames();
 
 }

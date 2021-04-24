@@ -25,6 +25,7 @@ package org.springframework.transaction;
  * @see PlatformTransactionManager
  * @see ReactiveTransactionManager
  */
+//事务管理器，传统非响应式和响应式事务管理器抽象
 public interface TransactionManager {
 
 }

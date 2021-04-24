@@ -42,10 +42,13 @@ public class HandlerExecutionChain {
 
 	private static final Log logger = LogFactory.getLog(HandlerExecutionChain.class);
 
+	/** 处理器，因不同类型处理器返回值不同，故使用Object接收 */
 	private final Object handler;
 
+	/** 控制器拦截链 */
 	private final List<HandlerInterceptor> interceptorList = new ArrayList<>();
 
+	/** 当前在拦截链中使用的拦截器位置序号 */
 	private int interceptorIndex = -1;
 
 
@@ -113,6 +116,7 @@ public class HandlerExecutionChain {
 	 * Add the given interceptors to the end of this chain.
 	 */
 	public void addInterceptors(HandlerInterceptor... interceptors) {
+		//合并数组至已有集合内
 		CollectionUtils.mergeArrayIntoCollection(interceptors, this.interceptorList);
 	}
 

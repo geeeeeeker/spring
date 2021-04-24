@@ -35,6 +35,7 @@ import org.springframework.util.Assert;
  * @since 3.0
  * @see CronExpression
  */
+//基于Cron表达式实现的任务触发器
 public class CronTrigger implements Trigger {
 
 	private final CronExpression expression;

@@ -101,12 +101,17 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	 */
 	protected Object toStoreValue(@Nullable Object userValue) {
 		if (userValue == null) {
+
+			//允许缓存空值，使用空对象模式缓存NullValue实例
 			if (this.allowNullValues) {
 				return NullValue.INSTANCE;
 			}
+
+			//不允许直接抛错
 			throw new IllegalArgumentException(
 					"Cache '" + getName() + "' is configured to not allow null values but null was provided");
 		}
+
 		return userValue;
 	}
 

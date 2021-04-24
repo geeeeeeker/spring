@@ -33,10 +33,12 @@ import org.springframework.web.socket.WebSocketSession;
  */
 public abstract class AbstractWebSocketHandler implements WebSocketHandler {
 
+	/** 连接建立后置处理 */
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 	}
 
+	/** */
 	@Override
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		if (message instanceof TextMessage) {
@@ -53,23 +55,29 @@ public abstract class AbstractWebSocketHandler implements WebSocketHandler {
 		}
 	}
 
+	/** 处理文本消息 */
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 	}
 
+	/** 处理二进制消息 */
 	protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws Exception {
 	}
 
+	/** 处理心跳消息 */
 	protected void handlePongMessage(WebSocketSession session, PongMessage message) throws Exception {
 	}
 
+	/** 处理传输层错误 */
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
 	}
 
+	/** 连接关闭后置处理 */
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 	}
 
+	/** 是否支持部分消息 */
 	@Override
 	public boolean supportsPartialMessages() {
 		return false;

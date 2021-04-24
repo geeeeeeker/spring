@@ -36,6 +36,7 @@ import org.springframework.util.Assert;
  * @since 2.0
  * @see SimpleAsyncTaskExecutor
  */
+//同步任务执行器。主要用于测试场景，在调用者线程中执行定时任务。
 @SuppressWarnings("serial")
 public class SyncTaskExecutor implements TaskExecutor, Serializable {
 

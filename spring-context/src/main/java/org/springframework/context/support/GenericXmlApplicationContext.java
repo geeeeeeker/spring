@@ -41,6 +41,7 @@ import org.springframework.core.io.Resource;
  */
 public class GenericXmlApplicationContext extends GenericApplicationContext {
 
+	//读基于XML的BeanDefinition配置文件
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 
 

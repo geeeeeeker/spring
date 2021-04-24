@@ -43,17 +43,17 @@ import org.springframework.util.CollectionUtils;
 public abstract class AbstractRoutingDataSource extends AbstractDataSource implements InitializingBean {
 
 	@Nullable
-	private Map<Object, Object> targetDataSources;
+	private Map<Object, Object> targetDataSources; //目标数据源路由表
 
 	@Nullable
-	private Object defaultTargetDataSource;
+	private Object defaultTargetDataSource; //默认的目标数据源
 
 	private boolean lenientFallback = true;
 
 	private DataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
 
 	@Nullable
-	private Map<Object, DataSource> resolvedDataSources;
+	private Map<Object, DataSource> resolvedDataSources; //
 
 	@Nullable
 	private DataSource resolvedDefaultDataSource;
@@ -120,11 +120,16 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 			throw new IllegalArgumentException("Property 'targetDataSources' is required");
 		}
 		this.resolvedDataSources = CollectionUtils.newHashMap(this.targetDataSources.size());
+		//解析目标数据源集
 		this.targetDataSources.forEach((key, value) -> {
+			//解析目标数据源查询键
 			Object lookupKey = resolveSpecifiedLookupKey(key);
+			//解析数据源，支持普通数据源或JNDI方式
 			DataSource dataSource = resolveSpecifiedDataSource(value);
 			this.resolvedDataSources.put(lookupKey, dataSource);
 		});
+
+		//解析默认目标数据源
 		if (this.defaultTargetDataSource != null) {
 			this.resolvedDefaultDataSource = resolveSpecifiedDataSource(this.defaultTargetDataSource);
 		}
@@ -153,9 +158,11 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	 * @throws IllegalArgumentException in case of an unsupported value type
 	 */
 	protected DataSource resolveSpecifiedDataSource(Object dataSource) throws IllegalArgumentException {
+		//直接获取数据源
 		if (dataSource instanceof DataSource) {
 			return (DataSource) dataSource;
 		}
+		//基于JNDI技术，根据名称查找数据源
 		else if (dataSource instanceof String) {
 			return this.dataSourceLookup.getDataSource((String) dataSource);
 		}
@@ -223,14 +230,21 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	 */
 	protected DataSource determineTargetDataSource() {
 		Assert.notNull(this.resolvedDataSources, "DataSource router not initialized");
+
+		//获取当前线程上下文内使用的数据源查询键
 		Object lookupKey = determineCurrentLookupKey();
+
+		//优先使用目标数据源集，未设置时使用默认目标数据源
 		DataSource dataSource = this.resolvedDataSources.get(lookupKey);
 		if (dataSource == null && (this.lenientFallback || lookupKey == null)) {
 			dataSource = this.resolvedDefaultDataSource;
 		}
+
+		//未配置目标数据源，无法进行数据源切换
 		if (dataSource == null) {
 			throw new IllegalStateException("Cannot determine target DataSource for lookup key [" + lookupKey + "]");
 		}
+
 		return dataSource;
 	}
 

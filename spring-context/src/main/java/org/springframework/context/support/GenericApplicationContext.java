@@ -94,6 +94,7 @@ import org.springframework.util.Assert;
  */
 public class GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry {
 
+	//实际委托给默认实现的BeanFactory
 	private final DefaultListableBeanFactory beanFactory;
 
 	@Nullable
@@ -110,6 +111,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * @see #refresh
 	 */
 	public GenericApplicationContext() {
+		//创建BeanFactory
 		this.beanFactory = new DefaultListableBeanFactory();
 	}
 
@@ -269,6 +271,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws IllegalStateException {
+		//GenericApplicationContext不支持多次刷新容器，仅能调用一次refresh()方法
 		if (!this.refreshed.compareAndSet(false, true)) {
 			throw new IllegalStateException(
 					"GenericApplicationContext does not support multiple refresh attempts: just call 'refresh' once");

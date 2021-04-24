@@ -240,6 +240,7 @@ public class ContextLoader {
 	@SuppressWarnings("unchecked")
 	public void setContextInitializers(@Nullable ApplicationContextInitializer<?>... initializers) {
 		if (initializers != null) {
+			//注册容器初始化器
 			for (ApplicationContextInitializer<?> initializer : initializers) {
 				this.contextInitializers.add((ApplicationContextInitializer<ConfigurableApplicationContext>) initializer);
 			}
@@ -436,6 +437,7 @@ public class ContextLoader {
 		}
 
 		AnnotationAwareOrderComparator.sort(this.contextInitializers);
+		//容器初始化器回调初始化容器上下文
 		for (ApplicationContextInitializer<ConfigurableApplicationContext> initializer : this.contextInitializers) {
 			initializer.initialize(wac);
 		}
@@ -540,7 +542,9 @@ public class ContextLoader {
 	 */
 	@Nullable
 	public static WebApplicationContext getCurrentWebApplicationContext() {
+		//获取当前线程的上下文类加载器
 		ClassLoader ccl = Thread.currentThread().getContextClassLoader();
+
 		if (ccl != null) {
 			WebApplicationContext ccpt = currentContextPerThread.get(ccl);
 			if (ccpt != null) {

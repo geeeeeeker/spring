@@ -61,7 +61,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
 	@Nullable
-	private volatile ScriptEngine scriptEngine;
+	private volatile ScriptEngine scriptEngine; //脚本引擎
 
 
 	/**
@@ -205,6 +205,8 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 	@Nullable
 	protected ScriptEngine retrieveScriptEngine(ScriptSource scriptSource) {
+
+		//脚本引擎管理器
 		ScriptEngineManager scriptEngineManager = new ScriptEngineManager(this.beanClassLoader);
 
 		if (this.scriptEngineName != null) {

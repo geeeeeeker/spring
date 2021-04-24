@@ -62,6 +62,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
  */
+//抽象工厂模式
 public interface FactoryBean<T> {
 
 	/**
@@ -92,6 +93,7 @@ public interface FactoryBean<T> {
 	 * @throws Exception in case of creation errors
 	 * @see FactoryBeanNotInitializedException
 	 */
+	//创建对象
 	@Nullable
 	T getObject() throws Exception;
 
@@ -121,6 +123,8 @@ public interface FactoryBean<T> {
 	 * Is the object managed by this factory a singleton? That is,
 	 * will {@link #getObject()} always return the same object
 	 * (a reference that can be cached)?
+	 *
+	 *
 	 * <p><b>NOTE:</b> If a FactoryBean indicates to hold a singleton object,
 	 * the object returned from {@code getObject()} might get cached
 	 * by the owning BeanFactory. Hence, do not return {@code true}

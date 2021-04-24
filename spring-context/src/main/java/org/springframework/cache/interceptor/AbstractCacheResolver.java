@@ -35,7 +35,9 @@ import org.springframework.util.Assert;
  * @author Juergen Hoeller
  * @since 4.1
  */
+//基于CacheOperationInvocationContext（请求的缓存操作调用上下文），从CacheManager（缓存管理器）中选择相匹配的Cache（缓存操作）
 public abstract class AbstractCacheResolver implements CacheResolver, InitializingBean {
+
 
 	@Nullable
 	private CacheManager cacheManager;
@@ -80,7 +82,8 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 
 	@Override
 	public Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context) {
-		Collection<String> cacheNames = getCacheNames(context);
+		Collection<String> cacheNames = this.getCacheNames(context);
+
 		if (cacheNames == null) {
 			return Collections.emptyList();
 		}

@@ -76,7 +76,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
 public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMapping
 		implements MatchableHandlerMapping, EmbeddedValueResolverAware {
 
-	private boolean useSuffixPatternMatch = false;
+	private boolean useSuffixPatternMatch = false; //开启后缀模式匹配
 
 	private boolean useRegisteredSuffixPatternMatch = false;
 

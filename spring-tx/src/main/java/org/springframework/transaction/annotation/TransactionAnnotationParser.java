@@ -35,6 +35,7 @@ import org.springframework.transaction.interceptor.TransactionAttribute;
  * @see Ejb3TransactionAnnotationParser
  * @see JtaTransactionAnnotationParser
  */
+//事务注解分析器
 public interface TransactionAnnotationParser {
 
 	/**
@@ -51,6 +52,7 @@ public interface TransactionAnnotationParser {
 	 * implementation returns {@code true}, leading to regular introspection.
 	 * @since 5.2
 	 */
+	//判断目标类是否标记事务注解
 	default boolean isCandidateClass(Class<?> targetClass) {
 		return true;
 	}
@@ -64,7 +66,8 @@ public interface TransactionAnnotationParser {
 	 * @return the configured transaction attribute, or {@code null} if none found
 	 * @see AnnotationTransactionAttributeSource#determineTransactionAttribute
 	 */
+	//解析事务注解
 	@Nullable
-	TransactionAttribute parseTransactionAnnotation(AnnotatedElement element);
+	TransactionAttribute parseTransactionAnnotation(AnnotatedElement element /* 注解在类或方法上，使用公共抽象 */);
 
 }

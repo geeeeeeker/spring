@@ -40,7 +40,7 @@ public interface CacheManager {
 	 * does not exist or could be not created
 	 */
 	@Nullable
-	Cache getCache(String name);
+	Cache getCache(String name /* cacheNames*/);
 
 	/**
 	 * Get a collection of the cache names known by this manager.

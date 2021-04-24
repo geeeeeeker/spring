@@ -65,7 +65,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	private volatile boolean removeOnCancelPolicy;
 
 	@Nullable
-	private volatile ErrorHandler errorHandler;
+	private volatile ErrorHandler errorHandler; //错误处理器
 
 	private Clock clock = Clock.systemDefaultZone();
 

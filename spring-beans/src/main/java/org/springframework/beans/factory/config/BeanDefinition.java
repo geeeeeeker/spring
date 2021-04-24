@@ -56,6 +56,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
+	// 角色
 
 	/**
 	 * Role hint indicating that a {@code BeanDefinition} is a major part

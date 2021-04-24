@@ -30,11 +30,13 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 3.0
  */
+//提供支持的Http请求方法类型
 public enum HttpMethod {
+
 
 	GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
 
-
+	/** 维护Http请求方法名与方法实例间的映射关系 */
 	private static final Map<String, HttpMethod> mappings = new HashMap<>(16);
 
 	static {

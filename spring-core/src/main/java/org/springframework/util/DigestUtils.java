@@ -35,8 +35,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class DigestUtils {
 
+	/** 默认消息摘要算法：MD5 */
 	private static final String MD5_ALGORITHM_NAME = "MD5";
 
+	/** 十六进制字符数组 */
 	private static final char[] HEX_CHARS =
 			{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
@@ -109,6 +111,8 @@ public abstract class DigestUtils {
 	/**
 	 * Create a new {@link MessageDigest} with the given algorithm.
 	 * <p>Necessary because {@code MessageDigest} is not thread-safe.
+	 *
+	 * @param algorithm 指定消息摘要算法
 	 */
 	private static MessageDigest getDigest(String algorithm) {
 		try {
@@ -171,6 +175,9 @@ public abstract class DigestUtils {
 		return encodeHex(digest);
 	}
 
+	/**
+	 * 核心算法：
+	 */
 	private static char[] encodeHex(byte[] bytes) {
 		char[] chars = new char[32];
 		for (int i = 0; i < chars.length; i = i + 2) {

@@ -29,6 +29,7 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @see DefaultAopProxyFactory
  */
+//基于Spring的AOP委托类抽象
 public interface AopProxy {
 
 	/**

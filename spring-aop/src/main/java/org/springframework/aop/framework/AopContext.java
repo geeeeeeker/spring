@@ -64,6 +64,7 @@ public final class AopContext {
 	 * AOP framework has not been configured to expose the proxy
 	 */
 	public static Object currentProxy() throws IllegalStateException {
+		//返回当前线程绑定的AopProxy
 		Object proxy = currentProxy.get();
 		if (proxy == null) {
 			throw new IllegalStateException(

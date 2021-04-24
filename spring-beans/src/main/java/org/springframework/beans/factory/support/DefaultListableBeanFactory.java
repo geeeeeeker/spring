@@ -1244,10 +1244,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					candidates.put(beanName, getType(beanName));
 				}
 			}
+
+			//选择标记@Primary的候选Bean
 			String candidateName = determinePrimaryCandidate(candidates, requiredType.toClass());
 			if (candidateName == null) {
+				//选择最高优先级的候选Bean
 				candidateName = determineHighestPriorityCandidate(candidates, requiredType.toClass());
 			}
+
 			if (candidateName != null) {
 				Object beanInstance = candidates.get(candidateName);
 				if (beanInstance == null) {

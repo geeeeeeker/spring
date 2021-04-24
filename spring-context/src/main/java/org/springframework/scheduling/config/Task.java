@@ -26,6 +26,7 @@ import org.springframework.util.Assert;
  * @author Juergen Hoeller
  * @since 3.2
  */
+//定时任务抽象。包装JDK的Runnable任务。
 public class Task {
 
 	private final Runnable runnable;

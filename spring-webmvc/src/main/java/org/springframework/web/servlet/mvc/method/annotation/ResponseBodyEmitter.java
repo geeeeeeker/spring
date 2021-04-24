@@ -343,7 +343,9 @@ public class ResponseBodyEmitter {
 		}
 	}
 
-
+	/**
+	 * 异步回调
+	 */
 	private class DefaultCallback implements Runnable {
 
 		@Nullable

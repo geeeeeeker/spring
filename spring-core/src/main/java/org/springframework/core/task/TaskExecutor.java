@@ -35,6 +35,7 @@ import java.util.concurrent.Executor;
  * @since 2.0
  * @see java.util.concurrent.Executor
  */
+//简单任务执行器。为了向后兼容JDK1.4，保持与标准Executor接口间的隔离性。
 @FunctionalInterface
 public interface TaskExecutor extends Executor {
 

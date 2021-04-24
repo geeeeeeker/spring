@@ -84,18 +84,18 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 
 	private final Object poolSizeMonitor = new Object();
 
-	private int corePoolSize = 1;
+	private int corePoolSize = 1; //核心线程池大小，默认：1
 
-	private int maxPoolSize = Integer.MAX_VALUE;
+	private int maxPoolSize = Integer.MAX_VALUE; //最大线程池大小，默认：整型最大值
 
-	private int keepAliveSeconds = 60;
+	private int keepAliveSeconds = 60; //空闲保活时间，默认：60秒
 
-	private int queueCapacity = Integer.MAX_VALUE;
+	private int queueCapacity = Integer.MAX_VALUE; //阻塞队列容量，默认：无限容量
 
-	private boolean allowCoreThreadTimeOut = false;
+	private boolean allowCoreThreadTimeOut = false; //允许核心线程超时开关
 
 	@Nullable
-	private TaskDecorator taskDecorator;
+	private TaskDecorator taskDecorator; //
 
 	@Nullable
 	private ThreadPoolExecutor threadPoolExecutor;

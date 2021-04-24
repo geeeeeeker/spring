@@ -217,12 +217,15 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 			// Lazily initialize cache resolver via default cache manager...
 			Assert.state(this.beanFactory != null, "CacheResolver or BeanFactory must be set on cache aspect");
 			try {
+				//从容器中读取CacheManager（缓存管理）接口实现方案
 				setCacheManager(this.beanFactory.getBean(CacheManager.class));
 			}
+			//存在多种实现方案无法协调（无@Primary或Bean优先级相同），容器无法自动选择合适的CacheManager实现
 			catch (NoUniqueBeanDefinitionException ex) {
 				throw new IllegalStateException("No CacheResolver specified, and no unique bean of type " +
 						"CacheManager found. Mark one as primary or declare a specific CacheManager to use.");
 			}
+			//使用@EnableCaching会开启CacheManager扫描，并将正确结果放入容器
 			catch (NoSuchBeanDefinitionException ex) {
 				throw new IllegalStateException("No CacheResolver specified, and no bean of type CacheManager found. " +
 						"Register a CacheManager bean or remove the @EnableCaching annotation from your configuration.");
@@ -337,12 +340,16 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	protected Object execute(CacheOperationInvoker invoker, Object target, Method method, Object[] args) {
 		// Check whether aspect is enabled (to cope with cases where the AJ is pulled in automatically)
 		if (this.initialized) {
+
+			//代理目标对象（被代理对象）对应的代理目标类（被代理类）
 			Class<?> targetClass = getTargetClass(target);
+
 			CacheOperationSource cacheOperationSource = getCacheOperationSource();
 			if (cacheOperationSource != null) {
 				Collection<CacheOperation> operations = cacheOperationSource.getCacheOperations(method, targetClass);
 				if (!CollectionUtils.isEmpty(operations)) {
 					return execute(invoker, method,
+							//封装缓存操作上下文
 							new CacheOperationContexts(operations, method, args, target, targetClass));
 				}
 			}
@@ -600,7 +607,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 		return key;
 	}
 
-
+	/** 缓存操作上下文帮助类 */
 	private class CacheOperationContexts {
 
 		private final MultiValueMap<Class<? extends CacheOperation>, CacheOperationContext> contexts;
@@ -819,7 +826,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 		}
 	}
 
-
+	/** 缓存PUT操作请求 */
 	private class CachePutRequest {
 
 		private final CacheOperationContext context;

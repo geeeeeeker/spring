@@ -38,6 +38,8 @@ import org.springframework.lang.Nullable;
  * {@code preHandle} method in the given order, finally invoking the handler
  * itself if all {@code preHandle} methods have returned {@code true}.
  *
+ * # preHandle方法可能会过滤请求
+ *
  * <p>The ability to parameterize this mapping is a powerful and unusual
  * capability of this MVC framework. For example, it is possible to write
  * a custom mapping based on session state, cookie state or many other
@@ -54,6 +56,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
  * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
  */
+//定义请求和处理器间的映射关系
 public interface HandlerMapping {
 
 	/**
@@ -151,6 +154,8 @@ public interface HandlerMapping {
 	default boolean usesPathPatterns() {
 		return false;
 	}
+
+	// 核心方法：从请求中
 
 	/**
 	 * Return a handler and any interceptors for this request. The choice may be made

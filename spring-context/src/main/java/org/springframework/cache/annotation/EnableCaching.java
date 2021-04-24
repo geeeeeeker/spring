@@ -169,6 +169,7 @@ import org.springframework.core.Ordered;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+//CachingConfigurationSelector间接ImportSelector接口，在该类中可以获取到@EnableCaching注解属性值
 @Import(CachingConfigurationSelector.class)
 public @interface EnableCaching {
 

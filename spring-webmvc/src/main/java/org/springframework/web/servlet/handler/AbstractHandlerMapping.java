@@ -84,14 +84,14 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 
 	@Nullable
-	private Object defaultHandler;
+	private Object defaultHandler; //默认处理器
 
 	@Nullable
-	private PathPatternParser patternParser;
+	private PathPatternParser patternParser; //请求路径模式匹配解析器
 
 	private UrlPathHelper urlPathHelper = new UrlPathHelper();
 
-	private PathMatcher pathMatcher = new AntPathMatcher();
+	private PathMatcher pathMatcher = new AntPathMatcher(); //路径匹配器
 
 	private final List<Object> interceptors = new ArrayList<>();
 

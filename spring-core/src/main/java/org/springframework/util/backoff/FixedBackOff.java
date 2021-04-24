@@ -23,6 +23,7 @@ package org.springframework.util.backoff;
  * @author Stephane Nicoll
  * @since 4.1
  */
+//定值避退算法
 public class FixedBackOff implements BackOff {
 
 	/**

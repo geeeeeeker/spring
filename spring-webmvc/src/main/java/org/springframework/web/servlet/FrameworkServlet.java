@@ -170,22 +170,22 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/** ServletContext attribute to find the WebApplicationContext in. */
 	@Nullable
-	private String contextAttribute;
+	private String contextAttribute; //
 
 	/** WebApplicationContext implementation class to create. */
-	private Class<?> contextClass = DEFAULT_CONTEXT_CLASS;
+	private Class<?> contextClass = DEFAULT_CONTEXT_CLASS; //Web应用容器上下文的默认实现
 
 	/** WebApplicationContext id to assign. */
 	@Nullable
-	private String contextId;
+	private String contextId; //分配的Web应用容器上下文唯一标识
 
 	/** Namespace for this servlet. */
 	@Nullable
-	private String namespace;
+	private String namespace; //DispatcherServlet的命名空间
 
 	/** Explicit context config location. */
 	@Nullable
-	private String contextConfigLocation;
+	private String contextConfigLocation; //应用容器的上下文配置路径
 
 	/** Actual ApplicationContextInitializer instances to apply to the context. */
 	private final List<ApplicationContextInitializer<ConfigurableApplicationContext>> contextInitializers =
@@ -670,6 +670,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		return wac;
 	}
 
+	/**
+	 * 配置并刷新Web应用容器上下文
+	 */
 	protected void configureAndRefreshWebApplicationContext(ConfigurableWebApplicationContext wac) {
 		if (ObjectUtils.identityToString(wac).equals(wac.getId())) {
 			// The application context id is still set to its original default value
@@ -684,7 +687,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			}
 		}
 
+		//设置servlet上下文
 		wac.setServletContext(getServletContext());
+		//设置servlet配置
 		wac.setServletConfig(getServletConfig());
 		wac.setNamespace(getNamespace());
 		wac.addApplicationListener(new SourceFilteringListener(wac, new ContextRefreshListener()));
@@ -697,8 +702,13 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			((ConfigurableWebEnvironment) env).initPropertySources(getServletContext(), getServletConfig());
 		}
 
+		//
 		postProcessWebApplicationContext(wac);
+
+		//使用应用上下文初始化器
 		applyInitializers(wac);
+
+		//刷新应用上下文
 		wac.refresh();
 	}
 
@@ -875,7 +885,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		//解析请求的Http方法类型
 		HttpMethod httpMethod = HttpMethod.resolve(request.getMethod());
+
 		if (httpMethod == HttpMethod.PATCH || httpMethod == null) {
 			processRequest(request, response);
 		}
@@ -1003,6 +1015,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		initContextHolders(request, localeContext, requestAttributes);
 
 		try {
+			//核心逻辑
 			doService(request, response);
 		}
 		catch (ServletException | IOException ex) {

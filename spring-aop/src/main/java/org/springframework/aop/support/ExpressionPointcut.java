@@ -25,6 +25,7 @@ import org.springframework.lang.Nullable;
  * @author Rob Harrop
  * @since 2.0
  */
+//基于字符串表达式定义的切点
 public interface ExpressionPointcut extends Pointcut {
 
 	/**

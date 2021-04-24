@@ -39,8 +39,10 @@ import org.springframework.lang.Nullable;
  */
 public abstract class AbstractCacheManager implements CacheManager, InitializingBean {
 
+	/** 缓存名称（命名空间）与缓存实例间的映射关系 */
 	private final ConcurrentMap<String, Cache> cacheMap = new ConcurrentHashMap<>(16);
 
+	/** 缓存名称（命名空间）集合 */
 	private volatile Set<String> cacheNames = Collections.emptySet();
 
 
@@ -59,7 +61,8 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * @see #loadCaches()
 	 */
 	public void initializeCaches() {
-		Collection<? extends Cache> caches = loadCaches();
+		//加载缓存实例
+		Collection<? extends Cache> caches = this.loadCaches();
 
 		synchronized (this.cacheMap) {
 			this.cacheNames = Collections.emptySet();

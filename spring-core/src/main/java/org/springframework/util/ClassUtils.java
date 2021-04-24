@@ -57,31 +57,31 @@ import org.springframework.lang.Nullable;
 public abstract class ClassUtils {
 
 	/** Suffix for array class names: {@code "[]"}. */
-	public static final String ARRAY_SUFFIX = "[]";
+	public static final String ARRAY_SUFFIX = "[]"; //数组类名称后缀[]
 
 	/** Prefix for internal array class names: {@code "["}. */
-	private static final String INTERNAL_ARRAY_PREFIX = "[";
+	private static final String INTERNAL_ARRAY_PREFIX = "["; //内部数组类名前缀[
 
 	/** Prefix for internal non-primitive array class names: {@code "[L"}. */
-	private static final String NON_PRIMITIVE_ARRAY_PREFIX = "[L";
+	private static final String NON_PRIMITIVE_ARRAY_PREFIX = "[L"; //元素非基本类的数组类名[L
 
 	/** A reusable empty class array constant. */
-	private static final Class<?>[] EMPTY_CLASS_ARRAY = {};
+	private static final Class<?>[] EMPTY_CLASS_ARRAY = {}; //空的类数组常量{}
 
 	/** The package separator character: {@code '.'}. */
-	private static final char PACKAGE_SEPARATOR = '.';
+	private static final char PACKAGE_SEPARATOR = '.'; //包层级分隔符.
 
 	/** The path separator character: {@code '/'}. */
-	private static final char PATH_SEPARATOR = '/';
+	private static final char PATH_SEPARATOR = '/'; //路径分隔符/
 
-	/** The nested class separator character: {@code '$'}. */
-	private static final char NESTED_CLASS_SEPARATOR = '$';
+	/** The inner class separator character: {@code '$'}. */
+	private static final char INNER_CLASS_SEPARATOR = '$'; //内部类分隔符$
 
 	/** The CGLIB class separator: {@code "$$"}. */
-	public static final String CGLIB_CLASS_SEPARATOR = "$$";
+	public static final String CGLIB_CLASS_SEPARATOR = "$$"; //CGLIB代理类分隔符$$
 
 	/** The ".class" file suffix. */
-	public static final String CLASS_FILE_SUFFIX = ".class";
+	public static final String CLASS_FILE_SUFFIX = ".class"; //字节码文件后缀
 
 
 	/**

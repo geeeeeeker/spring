@@ -40,6 +40,8 @@ import org.springframework.beans.BeansException;
  * A {@code BeanFactoryPostProcessor} may also be registered programmatically
  * with a {@code ConfigurableApplicationContext}.
  *
+ * 使用ConfigurableApplicationContext，可以编程式注册BeanFactoryPostProcessor
+ *
  * <h3>Ordering</h3>
  * <p>{@code BeanFactoryPostProcessor} beans that are autodetected in an
  * {@code ApplicationContext} will be ordered according to

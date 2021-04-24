@@ -52,6 +52,7 @@ import org.springframework.util.Assert;
  * @author Stephane Nicoll
  * @since 4.1
  */
+//指数避退算法
 public class ExponentialBackOff implements BackOff {
 
 	/**

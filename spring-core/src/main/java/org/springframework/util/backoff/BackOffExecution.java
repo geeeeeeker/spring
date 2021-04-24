@@ -25,6 +25,7 @@ package org.springframework.util.backoff;
  * @since 4.1
  * @see BackOff
  */
+//避退算法执行抽象
 @FunctionalInterface
 public interface BackOffExecution {
 

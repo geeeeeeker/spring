@@ -55,6 +55,7 @@ import org.springframework.lang.Nullable;
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
  */
+//初始化完成后嵌入拦截修改BeanDefinition的扩展点
 public interface BeanPostProcessor {
 
 	/**
@@ -72,7 +73,7 @@ public interface BeanPostProcessor {
 	 */
 	@Nullable
 	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		return bean;
+		return bean /* 原始Bean或重新包装的Bean */;
 	}
 
 	/**

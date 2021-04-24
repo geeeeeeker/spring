@@ -43,6 +43,7 @@ package org.springframework.util.backoff;
  * @since 4.1
  * @see BackOffExecution
  */
+//避退算法抽象
 @FunctionalInterface
 public interface BackOff {
 
@@ -50,6 +51,7 @@ public interface BackOff {
 	 * Start a new back off execution.
 	 * @return a fresh {@link BackOffExecution} ready to be used
 	 */
+	//启动并执行一次避退算法
 	BackOffExecution start();
 
 }
